@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace hw1003
 {
-    class Magician
+    class Magician : IComparable<Magician>, INameable
     {
         public string Name { get; private set; }
         public string BirthTown { get; private set; }
@@ -18,28 +18,45 @@ namespace hw1003
             this.BirthTown = birthTown;
             this.FavoriteSpell = favoriteSpell;
         }
-        public string this[string name]
+        public string this[string fieldName]
         {
             get
             {
-                if (name == "Name")
+                switch (fieldName)
                 {
-                    return Name;
+                    case "Name":
+                        return this.Name;
+                    case "BirthTown":
+                        return this.BirthTown;
+                    case "FavoriteSpell":
+                        return this.FavoriteSpell;
                 }
-                if (name == "BirthTown")
+                return null;
+            }
+            set
+            {
+                switch (fieldName)
                 {
-                    return BirthTown;
+                    case "Name":
+                        this.Name = value;
+                        break;
+                    case "BirthTown":
+                        this.BirthTown = value;
+                        break;
+                    case "FavoriteSpell":
+                        this.FavoriteSpell = value;
+                        break;
                 }
-                if (name == "FavoriteSpell")
-                {
-                    return FavoriteSpell;
-                }
-                return "Unknown";
             }
         }
         public override string ToString()
         {
             return $"Magician:{Name}, From: {BirthTown}, Favorite Spell: {FavoriteSpell}";
+        }
+
+        public int CompareTo(Magician other)
+        {
+            return this.Name.CompareTo(other.Name);
         }
     }
 }

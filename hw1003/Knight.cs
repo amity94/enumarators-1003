@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace hw1003
 {
-    class Knight
+    class Knight : IComparable<Knight>, INameable
     {
         public string Name { get; private set; }
         public string BirthTown { get; private set; }
@@ -19,29 +19,46 @@ namespace hw1003
             this.Title = title;
         }
 
-        public string this[string name]
+        public string this[string fieldName]
         {
             get
             {
-                if(name == "Name")
+                switch(fieldName)
                 {
-                    return Name;
+                    case "Name":
+                        return this.Name;
+                    case "BirthTown":
+                        return this.BirthTown;
+                    case "Title":
+                        return this.Title;
                 }
-                if (name == "BirthTown")
+                return null;
+            }
+            set
+            {
+                switch (fieldName)
                 {
-                    return BirthTown;
+                    case "Name":
+                        this.Name = value;
+                        break;
+                    case "BirthTown":
+                        this.BirthTown = value;
+                        break;
+                    case "Title":
+                        this.Title = value;
+                        break;
                 }
-                if (name == "Title")
-                {
-                    return Title;
-                }
-                return "Unknown";
             }
         }
 
         public override string ToString()
         {
             return $"Knight: {Name}, From: {BirthTown}, Title: {Title}";
+        }
+
+        public int CompareTo(Knight other)
+        {
+            return this.Name.CompareTo(other.Name);
         }
     }
 }

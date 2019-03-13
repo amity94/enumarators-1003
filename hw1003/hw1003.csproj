@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="INameable.cs" />
     <Compile Include="Knight.cs" />
     <Compile Include="Magician.cs" />
     <Compile Include="Program.cs" />

@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace hw1003
 {
-    class Program
+    interface INameable
     {
-        static void Main(string[] args)
-        {
-
-        }
+         string Name { get; }
     }
 }
